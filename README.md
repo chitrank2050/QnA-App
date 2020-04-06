@@ -1,6 +1,6 @@
-# first_flutter_app
+# QnA_Flutter_App
 
-A new Flutter project.
+First Flutter project.
 
 ## Getting Started
 
