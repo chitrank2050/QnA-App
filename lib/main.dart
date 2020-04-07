@@ -25,25 +25,42 @@ class _MyHomePage extends StatefulWidget {
 
 class __MyHomePageState extends State<_MyHomePage> {
   var _questionIndex = 0;
+  var _totalScore = 0;
 
   bool done = false;
 
   final _questions = const [
     {
       'Q': 'What\'s your favourite color?',
-      'A': ['Black', 'Red', 'Green', 'White'],
+      'A': [
+        {'text': 'Black', 'score': 4},
+        {'text': 'Red', 'score': 3},
+        {'text': 'Green', 'score': 2},
+        {'text': 'White', 'score': 1}
+      ],
     },
     {
       'Q': 'What\'s your favourite animal?',
-      'A': ['Deer', 'Rabbit', 'Elephant', 'Lion'],
+      'A': [
+        {'text': 'Deer', 'score': 4},
+        {'text': 'Rabbit', 'score': 3},
+        {'text': 'Elephant', 'score': 2},
+        {'text': 'Lion', 'score': 1}
+      ],
     },
     {
       'Q': 'Who\'s your favourite instructor?',
-      'A': ['Max', 'Dany', 'Jin', 'Spencer'],
+      'A': [
+        {'text': 'Max', 'score': 4},
+        {'text': 'Dany', 'score': 3},
+        {'text': 'Jin', 'score': 2},
+        {'text': 'Tim', 'score': 1},
+      ],
     },
   ];
 
-  void _answerQuestion() {
+  void _answerQuestion(int score) {
+    _totalScore += score;
     setState(() {
       _questionIndex += 1;
     });
@@ -62,7 +79,7 @@ class __MyHomePageState extends State<_MyHomePage> {
               index: _questionIndex,
               questions: _questions,
             )
-          : Result(),
+          : Result(_totalScore),
     );
   }
 }
