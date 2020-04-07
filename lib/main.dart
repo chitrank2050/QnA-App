@@ -66,6 +66,12 @@ class __MyHomePageState extends State<_MyHomePage> {
     });
   }
 
+  void _resetQuestions() {
+    setState(() {
+      _totalScore = _questionIndex = 0;
+    });
+  }
+
   @override
   Widget build(BuildContext ctx) {
     return Scaffold(
@@ -79,7 +85,7 @@ class __MyHomePageState extends State<_MyHomePage> {
               index: _questionIndex,
               questions: _questions,
             )
-          : Result(_totalScore),
+          : Result(_totalScore, _resetQuestions),
     );
   }
 }
