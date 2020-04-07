@@ -29,15 +29,15 @@ class __MyHomePageState extends State<_MyHomePage> {
   var questions = [
     {
       'Q': 'What\'s your favourite color?',
-      'a': ['Black', 'Red', 'Green', 'White'],
+      'A': ['Black', 'Red', 'Green', 'White'],
     },
     {
       'Q': 'What\'s your favourite animal?',
-      'a': ['Deer', 'Rabbit', 'Elephant', 'Lion'],
+      'A': ['Deer', 'Rabbit', 'Elephant', 'Lion'],
     },
     {
       'Q': 'Who\'s your favourite instructor?',
-      'a': ['Max', 'Dany', 'Jin', 'Spencer'],
+      'A': ['Max', 'Dany', 'Jin', 'Spencer'],
     },
   ];
 
@@ -59,9 +59,9 @@ class __MyHomePageState extends State<_MyHomePage> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Question(questions[_questionIndex]['Q']),
-          Answer(_answerQuestion),
-          Answer(_answerQuestion),
-          Answer(_answerQuestion),
+          ...(questions[_questionIndex]['A'] as List<String>)
+              .map((e) => Answer(e, this._answerQuestion))
+              .toList(),
         ],
       ),
     );
