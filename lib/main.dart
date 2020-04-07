@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import './question.dart';
-import './answer.dart';
+import './quiz.dart';
+import './result.dart';
 
 void main() => runApp(MyApp());
 
@@ -26,7 +26,9 @@ class _MyHomePage extends StatefulWidget {
 class __MyHomePageState extends State<_MyHomePage> {
   var _questionIndex = 0;
 
-  var questions = [
+  bool done = false;
+
+  final _questions = const [
     {
       'Q': 'What\'s your favourite color?',
       'A': ['Black', 'Red', 'Green', 'White'],
@@ -45,7 +47,6 @@ class __MyHomePageState extends State<_MyHomePage> {
     setState(() {
       _questionIndex += 1;
     });
-    print(_questionIndex);
   }
 
   @override
@@ -55,15 +56,13 @@ class __MyHomePageState extends State<_MyHomePage> {
         backgroundColor: Colors.amber,
         title: Text('Flutter Demo'),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Question(questions[_questionIndex]['Q']),
-          ...(questions[_questionIndex]['A'] as List<String>)
-              .map((e) => Answer(e, this._answerQuestion))
-              .toList(),
-        ],
-      ),
+      body: (_questionIndex < _questions.length)
+          ? Quiz(
+              answerQuestion: _answerQuestion,
+              index: _questionIndex,
+              questions: _questions,
+            )
+          : Result(),
     );
   }
 }
