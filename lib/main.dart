@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import './question.dart';
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -21,7 +23,7 @@ class _MyHomePage extends StatefulWidget {
 }
 
 class __MyHomePageState extends State<_MyHomePage> {
-  var questionIndex = 0;
+  var _questionIndex = 0;
 
   var questions = [
     'What\'s your favourite color?',
@@ -30,9 +32,9 @@ class __MyHomePageState extends State<_MyHomePage> {
 
   void answerQuestion() {
     setState(() {
-      questionIndex += 1;
+      _questionIndex += 1;
     });
-    print(questionIndex);
+    print(_questionIndex);
   }
 
   @override
@@ -46,7 +48,7 @@ class __MyHomePageState extends State<_MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(questions[questionIndex]),
+            Question(questions[_questionIndex]),
             RaisedButton(
               child: Text('Answer 1'),
               onPressed: answerQuestion,
