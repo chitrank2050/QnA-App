@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import './question.dart';
+import './answer.dart';
 
 void main() => runApp(MyApp());
 
@@ -26,11 +27,21 @@ class __MyHomePageState extends State<_MyHomePage> {
   var _questionIndex = 0;
 
   var questions = [
-    'What\'s your favourite color?',
-    'What\'s your favourite animal?',
+    {
+      'Q': 'What\'s your favourite color?',
+      'a': ['Black', 'Red', 'Green', 'White'],
+    },
+    {
+      'Q': 'What\'s your favourite animal?',
+      'a': ['Deer', 'Rabbit', 'Elephant', 'Lion'],
+    },
+    {
+      'Q': 'Who\'s your favourite instructor?',
+      'a': ['Max', 'Dany', 'Jin', 'Spencer'],
+    },
   ];
 
-  void answerQuestion() {
+  void _answerQuestion() {
     setState(() {
       _questionIndex += 1;
     });
@@ -44,25 +55,14 @@ class __MyHomePageState extends State<_MyHomePage> {
         backgroundColor: Colors.amber,
         title: Text('Flutter Demo'),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Question(questions[_questionIndex]),
-            RaisedButton(
-              child: Text('Answer 1'),
-              onPressed: answerQuestion,
-            ),
-            RaisedButton(
-              child: Text('Answer 2'),
-              onPressed: answerQuestion,
-            ),
-            RaisedButton(
-              child: Text('Answer 3'),
-              onPressed: answerQuestion,
-            ),
-          ],
-        ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Question(questions[_questionIndex]['Q']),
+          Answer(_answerQuestion),
+          Answer(_answerQuestion),
+          Answer(_answerQuestion),
+        ],
       ),
     );
   }
